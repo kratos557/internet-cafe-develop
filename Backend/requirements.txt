@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy[asyncio]
+asyncpg
+alembic
+pydantic-settings
+psycopg2-binary
+greenlet
+PyJWT[crypto]
+pytest
+pytest
