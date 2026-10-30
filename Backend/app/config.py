@@ -1,23 +1,29 @@
-"""Módulo de configuración de variables de entorno.
+"""Módulo de configuración de variables de entorno."""
 
-Valida que las llaves obligatorias existan al iniciar; si falta alguna,
-el servidor se detiene automáticamente para evitar fallos de seguridad.
-"""
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    database_url: str = "postgresql+asyncpg://postgres:password123@db:5432/internet_cafe"
-    secret_key: str = "tu-llave-secreta-super-segura-123"
-    app_name: str = "Internet Cafe API" 
-    frontend_base_url: str = "http://localhost:5173" 
+    # Configuración obligatoria
+    database_url: str
+    secret_key: str
 
-    class Config:
-        env_file = ".env"
-        extra = "ignore"
+    # Configuración general
+    app_name: str = "Internet Cafe API"
+    frontend_base_url: str = "http://localhost:5173"
+
+    # Llaves criptográficas
+    jwt_private_key: str | None = None
+    jwt_public_key: str | None = None
+    data_enc_keys: str | None = None
+    blind_index_key: str | None = None
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
 
-
-
-# Instancia global de configuración que valida el entorno al importar el módulo
+# Instancia global de configuración
 settings = Settings()

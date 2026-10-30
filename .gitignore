@@ -22,3 +22,6 @@ Backend/.env
 # Llaves locales de seguridad
 Backend/.local/keys/
 Backend/.env
+
+# Entorno virtual Python 3.11
+Backend/.venv311/
