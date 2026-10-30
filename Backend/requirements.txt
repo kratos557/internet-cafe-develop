@@ -7,5 +7,6 @@ pydantic-settings
 psycopg2-binary
 greenlet
 PyJWT[crypto]
-pytest
+cryptography
+python-dotenv
 pytest
